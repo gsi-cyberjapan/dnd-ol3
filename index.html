@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>KML/GeoJSON DnD onto GSI Tiles</title>
+<link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css"/>
+<script src="http://openlayers.org/en/v3.0.0/build/ol.js"></script>
+</head>
+<body>
+<div id="map">
+<script>
+var map = new ol.Map({
+  target: "map",
+  layers: [
+    new ol.layer.Tile({source: new ol.source.XYZ({
+      attributions: [new ol.Attribution({html: "地理院タイル（標準地図）"})],
+      url: "http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png",
+      projection: "EPSG:3857"
+    })})
+  ],
+  view: new ol.View({
+    projection: "EPSG:3857",
+    center: ol.proj.transform([138.7313889, 35.3622222], "EPSG:4326", "EPSG:3857"),
+    maxZoom: 17, zoom: 5
+  })
+});
+<script>
